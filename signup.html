@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ExpenseTracker Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B600%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B600%3B700%3B900"
+    />
+    <style>
+        :root {
+            --primary: #4361ee;
+            --danger: #ef4444;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --border-color: #d1d5db;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', sans-serif;
+            background-color: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .signup-container {
+            display: flex;
+            max-width: 1100px;
+            width: 100%;
+            height: 95vh;
+            max-height: 720px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* --- Testimonial Panel (Left) --- */
+        .testimonial-panel {
+            flex: 1;
+            background-color: #eef2ff;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background-image: url('data:image/svg+xml;utf8,<svg width="550" height="150" viewBox="0 0 550 150" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 150L0 120L20 120L20 90L40 90L40 120L60 120L60 70L80 70L80 120L100 120L100 100L120 100L120 120L150 120V50L170 50V120L200 120V80L220 80V120L250 120V60L270 60V120L300 120V90L320 90V120L350 120V70L370 70V120L400 120V100L420 100V120L450 120V80L470 80V120L500 120V90L520 90V120L550 120V150H0Z" fill="%23dbeafe"/></svg>');
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            background-size: contain;
+        }
+
+        .testimonial-panel .quote-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-panel blockquote {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-panel cite {
+            font-style: normal;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .company-logo {
+            margin-top: 30px;
+            max-width: 150px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* --- Form Panel (Right) --- */
+        .form-panel {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .form-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px; /* Reduced margin */
+        }
+        .form-logo .logo-icon { width: 30px; height: 30px; color: var(--primary); }
+        .form-logo .logo-text { font-size: 1.3rem; font-weight: 800; color: var(--text-primary); } /* Reduced font size */
+
+        .form-panel h2 {
+            font-size: 1.6rem; /* Reduced font size */
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px; /* Reduced margin */
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 12px; /* Reduced margin */
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem; /* Reduced font size */
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px; /* Reduced margin */
+        }
+        .form-group .input-wrapper {
+            position: relative;
+        }
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 10px 10px 40px; /* Reduced padding */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem; /* Reduced font size */
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px; /* Reduced margin */
+        }
+        .checkbox-group label { font-size: 0.8rem; color: var(--text-secondary); }
+        .checkbox-group a { color: var(--primary); text-decoration: none; }
+        .checkbox-group a:hover { text-decoration: underline; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px; /* Reduced padding */
+            background-color: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem; /* Reduced font size */
+            font-weight: 600;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+        }
+        .submit-btn:hover { filter: brightness(90%); }
+
+        .divider {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin: 15px 0; /* Reduced margin */
+            position: relative;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px; /* Reduced margin */
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px; 
+            height: 44px;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px; 
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .social-btn:hover { background-color: #f3f4f6; }
+        .social-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .login-link {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .login-link a { color: var(--primary); font-weight: 600; text-decoration: none; }
+        .login-link a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            body {
+                height: auto;
+                min-height: 100vh;
+                overflow: visible;
+            }
+            .signup-container {
+                flex-direction: column;
+                height: auto;
+                max-height: none;
+                margin: 20px 0;
+            }
+            .testimonial-panel {
+                display: none;
+            }
+            .form-panel {
+                overflow-y: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="testimonial-panel">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <blockquote>
+                The ExpenseTracker Pro team has provided us with the best features — especially the receipt auto-scan, which eases our expense reporting journey with its mobile functionality. We have received quite a positive response from our employees since the time of implementation, and adoption rates are high.
+            </blockquote>
+            <cite>
+                — Sne Ha, CHRO
+            </cite>
+            <div class="company-logo">
+                <i class="fas fa-building"></i> Your Partner Corp
+            </div>
+        </div>
+
+        <div class="form-panel">
+            <div class="form-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor"></path></svg>
+                </div>
+                <span class="logo-text">ExpenseTracker Pro</span>
+            </div>
+            <h2>Let's get started</h2>
+
+            <form action="#">
+                <div class="form-group">
+                    <label for="business-name">Business Name*</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-briefcase"></i>
+                        <input type="text" id="business-name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password*</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select id="location">
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label>
+                </div>
+
+                <button type="submit" class="submit-btn">Create your account</button>
+            </form>
+
+            <div class="divider">or sign in using</div>
+
+            <div class="social-login">
+                <a href="#" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M21.5,12.2c0-0.8-0.1-1.5-0.2-2.2H12v4.2h5.3c-0.2,1.4-1,2.5-2.4,3.3v2.7h3.5C20.4,18.1,21.5,15.4,21.5,12.2z"></path><path fill="#34A853" d="M12,22c2.7,0,5-0.9,6.6-2.5l-3.5-2.7c-0.9,0.6-2,1-3.1,1c-2.4,0-4.4-1.6-5.1-3.8H3.3v2.8C5,20.2,8.3,22,12,22z"></path><path fill="#FBBC05" d="M6.9,13.7c-0.2-0.6-0.3-1.2-0.3-1.9c0-0.6,0.1-1.3,0.3-1.9V7.1H3.3C2.5,8.6,2,10.2,2,11.8s0.5,3.2,1.3,4.7L6.9,13.7z"></path><path fill="#EA4335" d="M12,6.8c1.5,0,2.8,0.5,3.8,1.5l3.1-3.1C17,3.4,14.7,2,12,2C8.3,2,5,3.8,3.3,6.9l3.6,2.8C7.6,8.4,9.6,6.8,12,6.8z"></path></svg>
+                </a>
+                <a href="#" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path fill="#1877F2" d="M24,12c0-6.6,-5.4-12-12-12S0,5.4,0,12c0,6,4.4,11,10.1,11.8V15.5H7.1v-3.6h3V8.8c0-3,1.8-4.7,4.6-4.7 c1.3,0,2.7,0.2,2.7,0.2v3.1h-1.6c-1.5,0-1.9,0.9-1.9,1.8v2.2h3.4l-0.5,3.6h-2.8v8.3C19.6,23,24,18,24,12z"></path></svg>
+                </a>
+                <a href="#" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path fill="#0A66C2" d="M20.5,20.5h-3.4V14c0-1.6-0.6-2.6-1.9-2.6c-1,0-1.7,0.7-1.9,1.4C13.2,13,13.2,13.5,13.2,14v6.5h-3.4c0,0,0-9.8,0-10.8 h3.4v1.5c0.5-0.7,1.3-1.8,3.1-1.8c2.2,0,3.9,1.5,3.9,4.6V20.5z M5.1,7.4c-1.3,0-2.2-0.9-2.2-2.1C2.9,4,3.8,3,5.1,3 C6.4,3,7.3,4,7.3,5.3C7.3,6.5,6.4,7.4,5.1,7.4z M3.4,20.5h3.4V9.7H3.4V20.5z"></path></svg>
+                </a>
+                <a href="#" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path fill="black" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.931ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg>
+                </a>
+                <a href="#" class="social-btn">
+                     <svg viewBox="0 0 24 24"><path fill="#F25022" d="M11.2,11.2H2V2h9.2V11.2z"></path><path fill="#7FBA00" d="M22,11.2h-9.2V2H22V11.2z"></path><path fill="#00A4EF" d="M11.2,22H2V12.8h9.2V22z"></path><path fill="#FFB900" d="M22,22h-9.2V12.8H22V22z"></path></svg>
+                </a>
+            </div>
+
+            <p class="login-link">Already have an account? <a href="login.html">Log in</a></p>
+        </div>
+    </div>
+</body>
+</html>

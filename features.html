@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - ExpenseTracker Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="header-loader.js" defer></script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3a0ca3;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --background: #f0f8ff;
+            --text: #333;
+            --dark-blue: #1a237e;
+            --section-bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', sans-serif;
+            background-color: #fff;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        main {
+            transition: padding-top 0.3s ease;
+        }
+
+        .features-hero {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #3941b4 0%, #1e2577 100%);
+            color: white;
+            text-align: center;
+        }
+        .features-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .features-hero h1 span {
+            color: var(--success);
+        }
+        .features-hero p {
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .feature-block {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .feature-block:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .feature-content {
+            flex: 1.2;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            background-color: #e3f2fd;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-content h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+
+        .feature-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .feature-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-content ul li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .feature-content ul li i {
+            color: var(--success);
+            font-size: 1.2rem;
+        }
+
+        .feature-image {
+            flex: 1;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .cta-section {
+            background-color: #eef2ff;
+            color: var(--dark-blue);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        .cta-btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--success);
+            color: var(--dark-blue);
+            font-size: 1rem;
+        }
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(76, 201, 240, 0.3);
+        }
+
+        @media (max-width: 992px) {
+            .feature-block, .feature-block:nth-child(even) {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+            .feature-content ul li {
+                justify-content: center;
+            }
+            .features-hero h1 { font-size: 2.2rem; }
+            .feature-content h2 { font-size: 2rem; }
+            .cta-section h2 { font-size: 2rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .features-hero h1 { font-size: 2rem; }
+            .feature-content h2 { font-size: 1.8rem; }
+            .cta-section h2 { font-size: 1.8rem; }
+            .features-hero p, .feature-content p {
+                font-size: 1rem;
+            }
+            .features-container {
+                padding: 60px 20px;
+            }
+        }
+
+        .footer-container { background: #0e2a4c; color: white; width: 100%; }
+        .footer-content { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-bottom: 40px; }
+        .footer-links a { color: #9dabb9; text-decoration: none; font-size: 16px; min-width: 160px; text-align: center; transition: color 0.3s ease; }
+        .footer-links a:hover { color: white; }
+        .social-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
+        .social-links a { color: #9dabb9; transition: color 0.3s ease; }
+        .social-links a:hover { color: white; }
+        .copyright { text-align: center; color: #9dabb9; font-size: 16px; }
+    </style>
+</head>
+<body>
+    
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="features-hero">
+            <h1>Powerful Features for <span>Ultimate Financial Control</span></h1>
+            <p>ExpenseTracker Pro is packed with tools designed to give you a clear, real-time view of your finances, helping you save more and spend smarter.</p>
+        </section>
+
+        <div class="features-container">
+            <div class="feature-block">
+                <div class="feature-content">
+                    <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h2>Intuitive Dashboard</h2>
+                    <p>Get a complete overview of your financial health at a glance. Our clean, visual dashboard brings all your crucial information together in one place.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> View total balance, income, and expenses instantly.</li>
+                        <li><i class="fas fa-check-circle"></i> Track spending habits with interactive charts.</li>
+                        <li><i class="fas fa-check-circle"></i> See recent transactions without navigating away.</li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <img src="images/feature1.jpg" alt="Dashboard Screenshot">
+                </div>
+            </div>
+
+            <div class="feature-block">
+                <div class="feature-content">
+                     <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                    <h2>Automated Expense Categorization</h2>
+                    <p>Stop wasting time on manual entry. Our smart system automatically categorizes your transactions, so you always know where your money is going.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Connect your bank notifications for seamless tracking.</li>
+                        <li><i class="fas fa-check-circle"></i> Create custom rules and categories for personalization.</li>
+                        <li><i class="fas fa-check-circle"></i> Smart alerts notify you of unusual spending patterns.</li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <img src="images/feature2.jpg" alt="Automated Categorization">
+                </div>
+            </div>
+
+            <div class="feature-block">
+                <div class="feature-content">
+                    <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h2>Powerful, Insightful Reports</h2>
+                    <p>Make informed financial decisions with detailed reports. Generate summaries of your spending by category, date range, and more.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Monthly and yearly financial summaries.</li>
+                        <li><i class="fas fa-check-circle"></i> Deep dive into spending by specific categories.</li>
+                        <li><i class="fas fa-check-circle"></i> Export your data to PDF or CSV for tax purposes.</li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <img src="images/feature3.jpg" alt="Reporting Charts">
+                </div>
+            </div>
+            
+            <div class="feature-block">
+                <div class="feature-content">
+                    <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                    <h2>Smart Budgeting Tools</h2>
+                    <p>Set, track, and achieve your financial goals. Our budgeting tools help you stay on track by monitoring your spending against your set limits.</p>
+                     <ul>
+                        <li><i class="fas fa-check-circle"></i> Set monthly budgets for your entire finances or specific categories.</li>
+                        <li><i class="fas fa-check-circle"></i> Visualize your progress with clear, color-coded bars.</li>
+                        <li><i class="fas fa-check-circle"></i> Receive alerts when you're approaching your budget limits.</li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <img src="images/feature4.jpg" alt="Budget Progress">
+                </div>
+            </div>
+        </div>
+
+        <section class="bg-white py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    
+                    <div class="text-center md:text-left">
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Core Values</h2>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                            At ExpenseTracker Pro, our principles guide every feature we develop. We are committed to building a platform that is not only powerful and intuitive but also fundamentally trustworthy. These core values are the foundation of our promise to you.
+                        </p>
+                        <svg class="w-32 h-auto text-gray-400 mx-auto md:ml-12 transform -rotate-12" viewBox="0 0 62 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.32292 20.4851C1.32292 20.4851 16.3479 -4.63427 34.2243 11.472C52.1007 27.5783 50.5484 35.8876 60.5292 41.516" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M54.5508 41.5156L60.5293 41.5156L59.1864 36.1983" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="relative rounded-2xl overflow-hidden shadow-xl min-h-[500px]">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Team collaborating" class="absolute inset-0 w-full h-full object-cover">
+                        
+                        <div class="relative p-6 sm:p-8 space-y-6">
+                            <div class="bg-white/95 backdrop-blur-xl p-6 rounded-xl shadow-lg flex items-start gap-4">
+                                <span class="text-5xl font-bold text-gray-300 -mt-1">01</span>
+                                <div>
+                                    <h3 class="text-xl font-bold text-[--dark-blue] mb-1">Customer Centricity</h3>
+                                    <p class="text-gray-700">We build our solutions with your success as our primary focus. Your financial clarity is our ultimate goal.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white/95 backdrop-blur-xl p-6 rounded-xl shadow-lg flex items-start gap-4">
+                                <span class="text-5xl font-bold text-gray-300 -mt-1">02</span>
+                                <div>
+                                    <h3 class="text-xl font-bold text-[--dark-blue] mb-1">Unwavering Integrity</h3>
+                                    <p class="text-gray-700">Your data is handled with the highest standards of ethics and privacy. We believe in complete transparency and security.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white/95 backdrop-blur-xl p-6 rounded-xl shadow-lg flex items-start gap-4">
+                                <span class="text-5xl font-bold text-gray-300 -mt-1">03</span>
+                                <div>
+                                    <h3 class="text-xl font-bold text-[--dark-blue] mb-1">Continuous Innovation</h3>
+                                    <p class="text-gray-700">We constantly push boundaries to simplify financial management, delivering features that are cutting-edge and practical.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="cta-section">
+            <h2>Ready to Take Control of Your Finances?</h2>
+            <p>Join thousands of users who are already building a better financial future with ExpenseTracker Pro.</p>
+            <a href="login.html#login" class="cta-btn">
+                <i class="fas fa-rocket"></i>
+                Start Your Free Trial
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Products</a> <a href="#">Overview</a> <a href="#">Pricing</a>
+                <a href="#">Integrations</a> <a href="#">Security</a> <a href="#">Resources</a>
+                <a href="#">Documentation</a> <a href="#">API Reference</a> <a href="#">Community Forum</a>
+                <a href="#">Blog</a> <a href="#">Company</a> <a href="#">About Us</a>
+                <a href="#">Careers</a> <a href="#">Press</a> <a href="#">Contact Us</a>
+                <a href="#">Support</a> <a href="#">Help Center</a> <a href="#">FAQs</a>
+                <a href="#">System Status</a> <a href="#">Contact Support</a>
+            </div>
+            <div class="social-links">
+                 <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"></path></svg></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path></svg></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path></svg></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path></svg></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M164.44,121.34l-48-32A8,8,0,0,0,104,96v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,145.05V111l25.58,17ZM234.33,69.52a24,24,0,0,0-14.49-16.4C185.56,39.88,131,40,128,40s-57.56-.12-91.84,13.12a24,24,0,0,0-14.49,16.4C19.08,79.5,16,97.74,16,128s3.08,48.5,5.67,58.48a24,24,0,0,0,14.49,16.41C69,215.56,120.4,216,127.34,216h1.32c6.94,0,58.37-.44,91.18-13.11a24,24,0,0,0,14.49-16.41c2.59-10,5.67-28.22,5.67-58.48S236.92,79.5,234.33,69.52Zm-15.49,113a8,8,0,0,1-4.77,5.49c-31.65,12.22-85.48,12-86,12H128c-.54,0-54.33.2-86-12a8,8,0,0,1-4.77-5.49C34.8,173.39,32,156.57,32,128s2.8-45.39,5.16-54.47A8,8,0,0,1,41.93,68c30.52-11.79,81.66-12,85.85-12h.27c.54,0,54.38-.18,86,12a8,8,0,0,1,4.77,5.49C221.2,82.61,224,99.43,224,128S221.2,173.39,218.84,182.47Z"></path></svg></a>
+            </div>
+            <p class="copyright">© 2024 ExpenseTracker Pro. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            const mainContent = document.querySelector('main');
+            if (headerPlaceholder && mainContent) {
+                const observer = new MutationObserver(() => {
+                    const header = headerPlaceholder.querySelector('.header-container');
+                    if (header) {
+                        const headerHeight = header.offsetHeight;
+                        mainContent.style.paddingTop = `${headerHeight}px`;
+                        observer.disconnect();
+                    }
+                });
+                observer.observe(headerPlaceholder, { childList: true });
+            }
+        });
+    </script>
+</body>
+</html>

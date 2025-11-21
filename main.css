@@ -1,0 +1,418 @@
+/* --- Global Reset and Base Variables --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 87.5%; /* Sets the base font size to 14px */
+}
+
+:root {
+    --primary: #4361ee;
+    --primary-light: #4895ef;
+    --secondary: #3a0ca3;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --warning: #f8961e;
+    --info: #43aa8b;
+    
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    
+    --transition: all 0.3s ease;
+    
+    /* Variables added from public pages */
+    --text: #333;
+    --dark-blue: #1a237e;
+    --section-bg-light: #f8f9fa;
+    --border-color: #e5e7eb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+}
+
+[data-theme="dark"] {
+    --light: #212529;
+    --dark: #f8f9fa;
+    --gray-100: #343a40;
+    --gray-200: #495057;
+    --gray-300: #6c757d;
+    --gray-400: #adb5bd;
+    --gray-500: #ced4da;
+    --gray-600: #dee2e6;
+    --gray-700: #e9ecef;
+    --gray-800: #f8f9fa;
+    --gray-900: #ffffff;
+}
+
+/* --- Base Body & Main Layout (Dashboard + Public Pages) --- */
+body {
+    font-family: 'Inter', 'Noto Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    /* This background is specific to the Dashboard/Login app */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.app-container {
+    min-height: 100vh;
+    background: var(--light);
+    position: relative;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Main Content Wrapper */
+.main-content {
+    padding: 20px 0;
+    min-height: calc(100vh - 70px); /* Account for header height */
+}
+main {
+    transition: padding-top 0.3s ease;
+    min-height: 80vh; 
+}
+
+
+/* -------------------------------------------------------------------------------------- */
+/* --- Dashboard Styles (Summary, Transactions, Forms) --- */
+/* -------------------------------------------------------------------------------------- */
+
+.summary-section {
+    padding: 40px 0 20px;
+    background: transparent;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.summary-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: var(--transition);
+    border-left: 4px solid transparent;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.balance-card { border-left-color: var(--primary); }
+.income-card { border-left-color: var(--success); }
+.expense-card { border-left-color: var(--danger); }
+
+.card-icon {
+    width: 60px; height: 60px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-size: 1.5rem; color: white;
+}
+.balance-card .card-icon { background: var(--primary); }
+.income-card .card-icon { background: var(--success); }
+.expense-card .card-icon { background: var(--danger); }
+
+.card-content h3 { font-size: 0.9rem; color: var(--gray-600); margin-bottom: 5px; font-weight: 600; }
+.amount { font-size: 1.75rem; font-weight: 700; color: var(--dark); }
+
+/* Content Grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.section-header h2 { font-size: 1.25rem; font-weight: 700; color: var(--dark); }
+
+/* Transaction Form */
+.transaction-form-section {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 50px; /* Account for header height + some spacing */
+    max-width: 400px;
+}
+.transaction-form { display: flex; flex-direction: column; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label { font-weight: 600; color: var(--gray-700); font-size: 0.9rem; }
+.form-group input, .form-group select {
+    padding: 12px 16px; border: 2px solid var(--gray-300); border-radius: var(--border-radius-sm);
+    font-size: 1rem; transition: var(--transition);
+}
+.form-group input:focus, .form-group select:focus {
+    outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+.type-selector { display: flex; gap: 10px; }
+.type-btn {
+    flex: 1; padding: 12px; border: 2px solid var(--gray-300); background: white;
+    border-radius: var(--border-radius-sm); cursor: pointer; transition: var(--transition);
+    display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600;
+}
+.type-btn.active { border-color: var(--primary); background: var(--primary); color: white; }
+.submit-btn {
+    background: var(--primary); color: white; border: none; padding: 15px;
+    border-radius: var(--border-radius-sm); font-size: 1rem; font-weight: 600;
+    cursor: pointer; transition: var(--transition); display: flex; align-items: center;
+    justify-content: center; gap: 8px;
+}
+.submit-btn:hover { background: var(--secondary); transform: translateY(-2px); }
+
+/* Transactions Section */
+.transactions-section {
+    background: white; padding: 30px; border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+}
+.transactions-list { display: flex; flex-direction: column; gap: 12px; }
+.transaction-item {
+    display: flex; align-items: center; justify-content: space-between; padding: 16px;
+    background: var(--gray-100); border-radius: var(--border-radius-sm); transition: var(--transition);
+    border-left: 4px solid var(--gray-300);
+}
+.transaction-item:hover { background: var(--gray-200); transform: translateX(5px); }
+
+.transaction-info { display: flex; align-items: center; gap: 12px; flex: 1; }
+.transaction-icon {
+    width: 40px; height: 40px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; color: white; font-size: 1rem;
+    background: var(--primary);
+}
+.transaction-details h4 { font-weight: 600; margin-bottom: 4px; color: var(--dark); }
+.transaction-details p { font-size: 0.8rem; color: var(--gray-600); margin: 0; }
+.transaction-amount { font-weight: 700; font-size: 1.1rem; margin: 0 15px; }
+.transaction-amount.income { color: var(--success); }
+.transaction-amount.expense { color: var(--danger); }
+.transaction-actions { display: flex; gap: 8px; }
+
+.btn { padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; transition: var(--transition); font-size: 0.8rem; }
+.btn-edit { background: var(--warning); color: white; }
+.btn-delete { background: var(--danger); color: white; }
+.btn-delete:hover { background: #d00000; }
+
+.empty-state { text-align: center; padding: 60px 20px; color: var(--gray-500); }
+.empty-state i { font-size: 3rem; margin-bottom: 16px; opacity: 0.5; }
+
+/* Modal */
+.modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;
+}
+.modal.active { display: flex; }
+.modal-content {
+    background: white; padding: 30px; border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg); width: 90%; max-width: 500px;
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.close-modal { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gray-600); }
+
+
+/* -------------------------------------------------------------------------------------- */
+/* --- Public Pages Styles (Merged from features/about/pricing/contact) --- */
+/* -------------------------------------------------------------------------------------- */
+
+/* --- Hero Section Base (For common hero BG/text on all public pages) --- */
+.hero-section-base {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #3941b4 0%, #1e2577 100%);
+    color: white;
+    text-align: center;
+}
+.hero-section-base h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+.hero-section-base h1 span { color: var(--success); }
+.hero-section-base p { font-size: 1rem; max-width: 800px; margin: 0 auto; opacity: 0.9; }
+
+/* --- CTA Button Styles (Common across public pages) --- */
+.cta-btn {
+    padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 600;
+    transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px;
+    background: var(--success); color: var(--dark-blue); font-size: 1rem;
+}
+.cta-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(76, 201, 240, 0.3); }
+
+/* --- Forms (Common elements from contact/about) --- */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 12px; border: 1px solid var(--border-color);
+    border-radius: 8px; font-size: 1rem; transition: all 0.3s ease;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+/* --- Features Page Specific Styles --- */
+.feature-icon { 
+    font-size: 2rem; color: var(--primary); background-color: #e3f2fd; width: 60px; height: 60px; 
+    border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px; 
+}
+.feature-content h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; color: var(--dark-blue); }
+.feature-content ul li i { color: var(--success); font-size: 1.2rem; }
+.cta-section { background-color: #eef2ff; color: var(--dark-blue); padding: 60px 20px; text-align: center; }
+
+/* --- About (Collaborate) Page Specific Styles --- */
+.video-hero-section { height: 450px; }
+.video-hero-section h1 { font-size: 2.8rem; }
+.video-hero-section .video-overlay { background-color: rgba(26, 35, 126, 0.6); }
+.who-can-partner h2 { font-size: 1.8rem; color: var(--dark-blue); }
+.partner-type-card.c1 { background-color: #e0f2f1; color: #004d40; }
+.partner-type-card.c2 { background-color: #e3f2fd; color: #0d47a1; }
+.partner-type-card.c3 { background-color: #fce4ec; color: #880e4f; }
+.partner-type-card.c4 { background-color: #f3e5f5; color: #4a148c; }
+.partner-type-card.c5 { background-color: #fff3e0; color: #e65100; }
+
+/* --- Pricing Page Specific Styles --- */
+.pricing-card.featured { border: 1px solid var(--primary); transform: scale(1.05); }
+.price-tag { font-size: 3rem; font-weight: 700; color: var(--text-primary); margin-bottom: 5px; }
+.help-section { padding: 60px 20px; background-color: #f9fafb; text-align: center; }
+
+/* --- Contact Page Specific Styles --- */
+.new-hero-container { background-color: var(--dark-blue); padding-bottom: 150px; }
+.contact-options-card { margin: -150px auto 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.contact-main { padding: 80px 0; }
+.contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; }
+.group-title.new { background-color: #dcfce7; color: #166534; }
+.group-title.existing { background-color: #ffedd5; color: #9a3412; }
+
+/* -------------------------------------------------------------------------------------- */
+/* --- FOOTER STYLES (Extracted from all files) --- */
+/* -------------------------------------------------------------------------------------- */
+.footer-container { background: #0e2a4c; color: white; width: 100%; }
+.footer-content { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-bottom: 40px; }
+.footer-links a { 
+    color: #9dabb9; text-decoration: none; font-size: 16px; 
+    min-width: 160px; text-align: center; transition: color 0.3s ease; 
+}
+.footer-links a:hover { color: white; }
+.social-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
+.social-links a {
+    color: #9dabb9;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.social-links a:hover {
+    color: white;
+}
+.copyright { text-align: center; color: #9dabb9; font-size: 16px; }
+
+/* -------------------------------------------------------------------------------------- */
+/* --- Responsive Design (Consolidated from all files) --- */
+/* -------------------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .transaction-form-section {
+        position: static;
+        max-width: 100%;
+    }
+    
+    /* Public Page specific consolidations */
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-card.featured { transform: scale(1); } /* Undo scale for smaller screens */
+    .partner-types-grid { grid-template-columns: repeat(3, 1fr); }
+    .feature-block, .feature-block:nth-child(even) { flex-direction: column; gap: 40px; text-align: center; }
+}
+
+@media (max-width: 900px) {
+    .contact-grid, .contact-groups { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .transaction-form-section,
+    .transactions-section {
+        padding: 20px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    /* Public Page specific consolidations */
+    .pricing-grid { grid-template-columns: 1fr; }
+    .help-grid { grid-template-columns: 1fr; }
+    .hero-section-base h1 { font-size: 2.2rem; }
+    .who-can-partner h2 { font-size: 1.8rem; }
+    .partner-types-grid { grid-template-columns: repeat(2, 1fr); }
+    .new-hero-content h1 { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .type-selector {
+        flex-direction: column;
+    }
+    
+    .transaction-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .transaction-actions {
+        align-self: flex-end;
+    }
+
+    /* Public Page specific consolidations */
+    .footer-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+}

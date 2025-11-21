@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - ExpenseTracker Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Inter%3Awght%4A400%3B500%3B700%3B900&family=Noto+Sans%3Awght%4A400%3B500%3B700%3B900"
+    />
+    <script src="header-loader.js" defer></script>
+    <style>
+        /* --- Base & Hero Styles --- */
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3a0ca3;
+            --success: #4cc9f0;
+            --danger: #ef4444;
+            --warning: #f8961e;
+            --text: #333;
+            --dark-blue: #1a237e;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --border-color: #d1d5db;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans', sans-serif;
+            background-color: #f9fafb;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        main {
+            transition: padding-top 0.3s ease;
+        }
+
+        /* --- ✨ MODIFIED: Pricing Hero Section --- */
+        .pricing-hero {
+            padding: 60px 20px; /* Reduced padding */
+            background: linear-gradient(135deg, #3941b4 0%, #1e2577 100%);
+            color: white;
+            text-align: center;
+        }
+        .pricing-hero h1 {
+            font-size: 2.5rem; /* Reduced font size */
+            font-weight: 700;
+            margin-bottom: 15px; /* Reduced margin */
+        }
+        .pricing-hero h1 span { color: var(--success); }
+        .pricing-hero p {
+            font-size: 1rem; /* Reduced font size */
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* --- Pricing Table Styles --- */
+        .pricing-container { padding: 80px 20px; }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 30px; max-width: 1400px; margin: 0 auto; align-items: stretch;
+        }
+        .pricing-card {
+            background-color: white; border: 1px solid #e5e7eb; border-radius: 12px;
+            padding: 30px; display: flex; flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); }
+        .pricing-card.featured {
+            border: 1px solid var(--primary); transform: scale(1.05); position: relative;
+            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.15); z-index: 10;
+        }
+        .featured-badge {
+            position: absolute; top: -2px; left: -2px; right: -2px; height: 6px;
+            background-color: var(--primary); border-top-left-radius: 12px; border-top-right-radius: 12px;
+        }
+        .plan-name { font-size: 1rem; font-weight: 600; color: #4b5563; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; }
+        .price-tag { font-size: 3rem; font-weight: 700; color: #111827; margin-bottom: 5px; }
+        .billing-info { font-size: 0.9rem; color: #6b7280; margin-bottom: 20px; }
+        .plan-description { font-size: 0.95rem; color: #4b5563; line-height: 1.6; margin-bottom: 25px; }
+        .cta-button {
+            display: block; width: 100%; padding: 14px; background-color: var(--danger);
+            color: white; text-align: center; border-radius: 8px; text-decoration: none;
+            font-weight: 600; transition: background-color 0.3s ease; margin-bottom: 10px;
+        }
+        .cta-button:hover { filter: brightness(90%); }
+        .min-users { font-size: 0.8rem; color: #6b7280; text-align: center; height: 15px; }
+        .features-heading {
+            font-size: 0.9rem; font-weight: 600; color: #374151;
+            padding-top: 25px; margin-top: auto; border-top: 1px solid #e5e7eb;
+        }
+        .features-list { list-style: none; padding: 0; margin: 15px 0 0 0; display: flex; flex-direction: column; gap: 12px; }
+        .features-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: #374151; line-height: 1.4; }
+        .features-list .fa-check { color: #10b981; margin-top: 4px; }
+        .features-list .fa-info-circle { color: #9ca3af; cursor: help; }
+
+        /* --- ✨ MODIFIED: Help Section Styles --- */
+        .help-section {
+            padding: 60px 20px; /* Reduced padding */
+            background-color: #f9fafb;
+            text-align: center;
+        }
+        .help-section h2 {
+            font-size: 2.2rem; /* Reduced font size */
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 40px; /* Reduced margin */
+        }
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .help-card {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px; /* Reduced padding */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .help-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .help-card .icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background-color: #eef2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .help-card h3 {
+            font-size: 1.15rem; /* Reduced font size */
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        .help-card p {
+            font-size: 0.9rem; /* Reduced font size */
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .help-card .contact-info {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .help-card .contact-hours {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .help-card .card-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .help-card .card-link:hover {
+            color: var(--dark-blue);
+        }
+
+        /* --- Slide-Over Panel Styles --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); display: none;
+            justify-content: flex-end; z-index: 1000; opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-content {
+            background-color: white; width: 60%; max-width: 850px;
+            height: 100vh; box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%); transition: transform 0.4s ease-in-out;
+            display: flex; padding: 0; overflow-y: auto; position: relative; border-radius: 0;
+        }
+        .modal-overlay.active .modal-content { transform: translateX(0); }
+        .close-btn {
+            position: absolute; top: 15px; right: 20px; background: none; border: none;
+            font-size: 2.5rem; color: #9ca3af; cursor: pointer; line-height: 1; z-index: 10;
+        }
+        .modal-split-layout { display: flex; width: 100%; }
+        .modal-testimonial {
+            flex-basis: 45%; background-color: #f0f2fe; padding: 50px 40px; display: flex;
+            flex-direction: column; justify-content: center; color: var(--dark-blue); flex-shrink: 0;
+        }
+        .modal-testimonial .quote-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        .modal-testimonial .quote-text { font-size: 1rem; line-height: 1.6; margin-bottom: 25px; font-weight: 500; }
+        .modal-testimonial .quote-author { font-weight: 700; margin-bottom: 5px; }
+        .modal-testimonial .quote-company { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 500; color: var(--primary); }
+        .modal-form-container { flex-basis: 55%; padding: 40px; overflow-y: auto; flex-shrink: 0; }
+        .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
+        .modal-header h2 { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); line-height: 1.3; }
+        .modal-body .form-group { margin-bottom: 15px; }
+        .modal-body input, .modal-body select, .modal-body textarea {
+            width: 100%; padding: 12px 15px; border: 1px solid var(--border-color);
+            border-radius: 8px; font-size: 1rem; font-family: inherit;
+        }
+        .modal-body .submit-btn {
+            width: 100%; padding: 14px; background-color: var(--danger); color: white;
+            border: none; border-radius: 8px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: filter 0.3s ease;
+        }
+        .captcha-group { display: flex; align-items: center; gap: 10px; }
+        #captchaCanvas { border-radius: 8px; border: 1px solid var(--border-color); }
+        .captcha-group .refresh-btn { background: none; border: 1px solid var(--border-color); height: 40px; width: 40px; border-radius: 8px; cursor: pointer; color: #6b7280; }
+        .privacy-text { font-size: 0.8rem; color: #6b7280; text-align: center; margin-top: 20px; }
+        .privacy-text a { color: var(--primary); text-decoration: none; }
+        .privacy-text a:hover { text-decoration: underline; }
+
+        /* --- FOOTER STYLES --- */
+        .footer-container { background: #0e2a4c; color: white; width: 100%; }
+        .footer-content { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-bottom: 40px; }
+        .footer-links a { color: #9dabb9; text-decoration: none; font-size: 16px; min-width: 160px; text-align: center; }
+        .social-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
+        /* ✨ ADDED: Social Link Styles */
+        .social-links a {
+            color: #9dabb9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: white;
+        }
+        .copyright { text-align: center; color: #9dabb9; font-size: 16px; }
+
+        /* --- Responsive Media Queries --- */
+        @media (max-width: 1200px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-card.featured { transform: scale(1); }
+        }
+        
+        @media (max-width: 1024px) {
+            .modal-testimonial { display: none; }
+            .modal-form-container { flex-basis: 100%; }
+            .modal-content { width: 65%; max-width: 500px; }
+            .close-btn { color: #333; }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+            .help-grid { grid-template-columns: 1fr; }
+            .pricing-hero h1 { font-size: 2.5rem; }
+            .modal-content { width: 100%; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="pricing-hero">
+            <h1>Find The <span>Perfect Plan</span> For You</h1>
+            <p>Simple, transparent pricing to help you manage your finances, whether you're an individual, a startup, or a large enterprise.</p>
+        </section>
+
+        <section class="pricing-container">
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="plan-name">Free</h3>
+                    <div class="price-tag">$0</div>
+                    <p class="plan-description">For small businesses and individuals looking to start their expense management journey.</p>
+                    <a href="signup.html" class="cta-button">Get started</a>
+                    <p class="min-users"></p>
+                    <div class="features-heading"></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Maximum users: 3</li>
+                        <li><i class="fas fa-check"></i> Basic expense reports</li>
+                        <li><i class="fas fa-check"></i> Mileage expenses via GPS</li>
+                        <li><i class="fas fa-check"></i> Multi-factor authentication</li>
+                        <li><i class="fas fa-check"></i> Multi-currency expenses</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="plan-name">Standard</h3>
+                    <div class="price-tag">$8</div>
+                    <p class="billing-info">per user/month billed annually</p>
+                    <p class="plan-description">For growing businesses looking to manage expenses and policies end-to-end.</p>
+                    <a href="signup.html" class="cta-button">Start my free trial</a>
+                    <p class="min-users">Minimum users: 5</p>
+                    <div class="features-heading"><strong>Everything in Free, plus:</strong></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Corporate card management</li>
+                        <li><i class="fas fa-check"></i> Direct bank card feeds</li>
+                        <li><i class="fas fa-check"></i> Multiple expense policies</li>
+                        <li><i class="fas fa-check"></i> Split expenses <i class="fas fa-info-circle"></i></li>
+                        <li><i class="fas fa-check"></i> Custom user roles</li>
+                        <li><i class="fas fa-check"></i> Cash advance management</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="featured-badge"></div>
+                    <h3 class="plan-name">Premium</h3>
+                    <div class="price-tag">$15</div>
+                    <p class="billing-info">per user/month billed annually</p>
+                    <p class="plan-description">For enterprises needing high-level customization and full T&E automation.</p>
+                    <a href="signup.html" class="cta-button">Start my free trial</a>
+                    <p class="min-users">Minimum users: 5</p>
+                    <div class="features-heading"><strong>Everything in Standard, plus:</strong></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Automated per diem management</li>
+                        <li><i class="fas fa-check"></i> Auto mileage capture with live tracking</li>
+                        <li><i class="fas fa-check"></i> Live budget tracking</li>
+                        <li><i class="fas fa-check"></i> Itemized receipt Autoscan</li>
+                        <li><i class="fas fa-check"></i> Advanced approval management</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="plan-name">Custom</h3>
+                    <div class="price-tag">Let's Talk</div>
+                    <p class="plan-description">A custom-built plan for large enterprises managing complex operations worldwide.</p>
+                    <a href="#" id="getQuoteBtn" class="cta-button">Get a quote</a>
+                    <p class="min-users">Minimum users: 100</p>
+                    <div class="features-heading"></div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fas fa-check"></i> Around-the-clock priority global support</li>
+                        <li><i class="fas fa-check"></i> Personalised implementation & training</li>
+                        <li><i class="fas fa-check"></i> Custom ERP & HRMS Integrations</li>
+                        <li><i class="fas fa-check"></i> Single sign-on (SSO)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <section class="help-section">
+        <h2>Still Have Questions?</h2>
+        <div class="help-grid">
+            <div class="help-card">
+                <div class="icon"><i class="fas fa-desktop"></i></div>
+                <h3>Book a Live Demo</h3>
+                <p>Let our solution experts walk you through ExpenseTracker Pro and answer your specific questions.</p>
+                <a href="#" id="requestDemoBtn" class="card-link">Request a Demo →</a>
+            </div>
+            <div class="help-card">
+                <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                <h3>Talk to Sales</h3>
+                <p>Our specialists are here to help you find the perfect plan for your business needs.</p>
+                <div>
+                    <p class="contact-info">IN - 18005726671</p>
+                    <p class="contact-hours">Monday - Friday (9:00 AM to 7:00 PM)</p>
+                </div>
+            </div>
+            <div class="help-card">
+                <div class="icon"><i class="fas fa-envelope-open-text"></i></div>
+                <h3>Contact Support</h3>
+                <p>Have a technical question or need help with your existing account? We're here for you.</p>
+                <a href="contact.html" class="card-link">Write to us →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-container">
+        <div class="footer-content">
+             <div class="footer-links">
+                <a href="#">Products</a> <a href="#">Overview</a> <a href="#">Pricing</a> <a href="#">Integrations</a> <a href="#">Security</a> <a href="#">Resources</a>
+                <a href="#">Documentation</a> <a href="#">API Reference</a> <a href="#">Community Forum</a> <a href="#">Blog</a> <a href="#">Company</a> <a href="#">About Us</a>
+                <a href="#">Careers</a> <a href="#">Press</a> <a href="#">Contact Us</a> <a href="#">Support</a> <a href="#">Help Center</a> <a href="#">FAQs</a>
+                <a href="#">System Status</a> <a href="#">Contact Support</a>
+            </div>
+            <div class="social-links">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"></path>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"></path>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path>
+                    </svg>
+                </a>
+            </div>
+            <p class="copyright">© 2025 ExpenseTracker Pro. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <div id="quoteModal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="close-btn">×</button>
+            <div class="modal-split-layout">
+                <div class="modal-testimonial">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="quote-text">The ExpenseTracker Pro team has provided us with the best features — especially the receipt auto-scan, which eases our expense reporting journey with its mobile functionality. We have received quite a positive response from our employees since the time of implementation, and adoption rates are high.</p>
+                    <div>
+                        <p class="quote-author">— Amit Rai, CHRO</p>
+                        <div class="quote-company">
+                            <i class="fas fa-building"></i>
+                            <span>Your Partner Corp</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-form-container">
+                    <div class="modal-header">
+                        <h2>Get a personalized demo from our experts</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#">
+                            <div class="form-group"> <input type="text" placeholder="Name*" required> </div>
+                            <div class="form-group"> <input type="email" placeholder="Work Email*" required> </div>
+                            <div class="form-group"> <input type="tel" placeholder="Phone No* (+91 xxxxxxxxxx)" required> </div>
+                            <div class="form-group"> <select required> <option value="" disabled selected>No of Employees*</option> <option value="1-50">1-50</option> <option value="51-200">51-200</option> <option value="201-1000">201-1000</option> <option value="1000+">1000+</option> </select> </div>
+                            <div class="form-group"> <select required> <option value="" disabled selected>Country*</option> <option value="India">India</option> <option value="United States">United States</option> <option value="United Kingdom">United Kingdom</option> <option value="Other">Other</option> </select> </div>
+                            <div class="form-group"> <textarea placeholder="Tell us what you're looking for" rows="3"></textarea> </div>
+                            
+                            <div class="form-group captcha-group">
+                                <canvas id="captchaCanvas" width="120" height="40"></canvas>
+                                <button type="button" class="refresh-btn" id="refreshCaptchaBtn"><i class="fas fa-sync-alt"></i></button>
+                                <input type="text" placeholder="Enter the captcha*" required>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Submit</button>
+                        </form>
+                        <p class="privacy-text">By clicking Submit, you agree to our <a href="#">Privacy Policy</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Sticky Header Padding Fix ---
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            const mainContent = document.querySelector('main');
+            const observer = new MutationObserver(() => {
+                const header = headerPlaceholder.querySelector('.header-container');
+                if (header) {
+                    const headerHeight = header.offsetHeight;
+                    if(mainContent) { mainContent.style.paddingTop = `${headerHeight}px`; }
+                    observer.disconnect();
+                }
+            });
+            observer.observe(headerPlaceholder, { childList: true });
+
+            // --- ✨ MODIFIED: Modal Functionality ---
+            const quoteModal = document.getElementById('quoteModal');
+            const getQuoteBtn = document.getElementById('getQuoteBtn');
+            const requestDemoBtn = document.getElementById('requestDemoBtn'); // Added demo button
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            const captchaCanvas = document.getElementById('captchaCanvas');
+            const refreshCaptchaBtn = document.getElementById('refreshCaptchaBtn');
+            const ctx = captchaCanvas.getContext('2d');
+            let captchaText = '';
+
+            function generateCaptcha() {
+                captchaText = '';
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                for (let i = 0; i < 6; i++) {
+                    captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+
+                ctx.fillStyle = '#f3f4f6';
+                ctx.fillRect(0, 0, captchaCanvas.width, captchaCanvas.height);
+
+                ctx.font = '24px Inter';
+                for (let i = 0; i < captchaText.length; i++) {
+                    ctx.save();
+                    ctx.translate(20 + i * 15, 28 + (Math.random() - 0.5) * 5);
+                    ctx.rotate((Math.random() - 0.5) * 0.3);
+                    ctx.fillStyle = `hsl(${Math.random() * 360}, 50%, 40%)`;
+                    ctx.fillText(captchaText[i], 0, 0);
+                    ctx.restore();
+                }
+
+                for (let i = 0; i < 3; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(Math.random() * 120, Math.random() * 40);
+                    ctx.lineTo(Math.random() * 120, Math.random() * 40);
+                    ctx.strokeStyle = '#00000020';
+                    ctx.stroke();
+                }
+            }
+
+            // Function to open the modal
+            const openModal = (e) => {
+                e.preventDefault();
+                quoteModal.classList.add('active');
+                generateCaptcha();
+            };
+
+            // Attach event listener to both buttons
+            if (getQuoteBtn) {
+                getQuoteBtn.addEventListener('click', openModal);
+            }
+            if (requestDemoBtn) {
+                requestDemoBtn.addEventListener('click', openModal);
+            }
+            
+            if (refreshCaptchaBtn) {
+               refreshCaptchaBtn.addEventListener('click', generateCaptcha);
+            }
+
+            function closeModal() {
+                quoteModal.classList.remove('active');
+            }
+
+            if(closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            if(quoteModal) {
+                quoteModal.addEventListener('click', (e) => {
+                    if (e.target === quoteModal) {
+                        closeModal();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
